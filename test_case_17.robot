@@ -1,6 +1,7 @@
 *** Settings ***
 Library  Selenium2Library
 Library    String
+Resource  keywords/keywords.robot
 Documentation  Vaild checkout
 Suite Setup  Open Browser  https://www.saucedemo.com/  chrome
 Suite Teardown  Close Browser
@@ -17,15 +18,6 @@ Vaild checkout
   Add product into cart and checkout  ${username}  ${password}  ${first_name}  ${last_name}  ${postal_code}
   
 *** Keywords ***
-Login
-  [Documentation]  Login
-  [Arguments]  ${username}  ${password}
-  Wait Until Element Is Visible    xpath=//*[@id="user-name"]
-  Input Text    xpath=//*[@id="user-name"]    ${username}
-  Input Text    xpath=//*[@id="password"]    ${password}
-  Submit Form
-  Sleep    2
-
 Add a product into cart and Verify
   [Documentation]  Add a product into cart and Verify by cart's quantity and product's title
   Wait Until Element Is Visible    xpath=//*[@id="add-to-cart-sauce-labs-backpack"]
@@ -52,19 +44,23 @@ Checkout complete and Verify
   Wait Until Element Is Visible    xpath=//*[@id="item_4_title_link"]/div
   Element Text Should Be    xpath=//*[@id="item_4_title_link"]/div    Sauce Labs Backpack
   ${product_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[1]/div[3]/div[2]/div[2]/div
-  ${product_price}  Get Substring    ${product_price}    1  6  
+  ${product_price}  Set Variable  ${product_price.split("$")}
+  ${product_price}  Set Variable  ${product_price[-1]}
   ${product_price}  Convert To Number    ${product_price}
 
   ${item_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[6]
-  ${item_price}  Get Substring    ${item_price}    13  18
+  ${item_price}  Set Variable  ${item_price.split("$")}
+  ${item_price}  Set Variable  ${item_price[-1]}
   ${item_price}  Convert To Number    ${item_price}
 
   ${tax_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[7]
-  ${tax_price}  Get Substring    ${tax_price}    6  10
+  ${tax_price}  Set Variable  ${tax_price.split("$")}
+  ${tax_price}  Set Variable  ${tax_price[-1]}
   ${tax_price}  Convert To Number    ${tax_price}
 
   ${total_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[8]
-  ${total_price}  Get Substring    ${total_price}    8  13
+  ${total_price}  Set Variable  ${total_price.split("$")}
+  ${total_price}  Set Variable  ${total_price[-1]}
   ${total_price}  Convert To Number    ${total_price}
 
   ${checkout_price}  Evaluate    ${item_price}+${tax_price}

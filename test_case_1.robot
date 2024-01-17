@@ -1,5 +1,6 @@
 *** Settings ***
 Library  Selenium2Library
+Resource  keywords/keywords.robot
 Documentation  Valid Login user with correct input and Logout
 Suite Setup  Open Browser  https://www.saucedemo.com/  chrome
 Suite Teardown  Close Browser
@@ -13,15 +14,6 @@ Valid Login user with correct input and Logout
   Login and Logout  ${username}  ${password}
 
 *** Keywords ***
-Login
-  [Documentation]  Login
-  [Arguments]  ${user}  ${pass}
-  Wait Until Element Is Visible  xpath=//*[@id="user-name"]
-  Input Text  xpath=//*[@id="user-name"]  ${user}
-  Input Text  xpath=//*[@id="password"]  ${pass}
-  Submit form
-  Sleep  2
-  
 Login Verify
   [Documentation]  Login Success and See Swag Labs logo
   Wait Until Element Is Visible  xpath=//*[@id="header_container"]/div[1]/div[2]/div

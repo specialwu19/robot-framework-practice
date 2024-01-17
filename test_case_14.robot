@@ -1,5 +1,6 @@
 *** Settings ***
 Library  Selenium2Library
+Resource  keywords/keywords.robot
 Documentation  Vaild add two products into cart and remove one by one
 Suite Setup  Open Browser  https://www.saucedemo.com/  chrome
 Suite Teardown  Close Browser
@@ -13,15 +14,6 @@ Vaild add two products into cart and remove
   Add products into cart and remove  ${username}  ${password}
   
 *** Keywords ***
-Login
-  [Documentation]  Login
-  [Arguments]  ${username}  ${password}
-  Wait Until Element Is Visible    xpath=//*[@id="user-name"]
-  Input Text    xpath=//*[@id="user-name"]    ${username}
-  Input Text    xpath=//*[@id="password"]    ${password}
-  Submit Form
-  Sleep    2
-
 Add a product into cart and Verify
   [Documentation]  Add a product into cart and Verify by cart's quantity and product's title
   Wait Until Element Is Visible    xpath=//*[@id="add-to-cart-sauce-labs-backpack"]

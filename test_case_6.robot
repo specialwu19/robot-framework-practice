@@ -1,6 +1,7 @@
 *** Settings ***
 Library  Selenium2Library
 Library    String
+Resource  keywords/keywords.robot
 Documentation  Vaild browse products
 Suite Setup  Open Browser  https://www.saucedemo.com/  chrome
 Suite Teardown  Close Browser
@@ -14,14 +15,6 @@ Vaild browse products
   Browse product  ${username}  ${password}
 
 *** Keywords ***
-Login
-  [Documentation]  Login
-  [Arguments]  ${username}  ${password}
-  Wait Until Element Is Enabled    xpath=//*[@id="user-name"]
-  Input Text    xpath=//*[@id="user-name"]    ${username}
-  Input Text    xpath=//*[@id="password"]    ${password}
-  Submit Form
-  Sleep    2
 Scrolling page
   [Documentation]  Scrolling home page
   [Arguments]  ${x_coordinate}  ${y_coordinate}
