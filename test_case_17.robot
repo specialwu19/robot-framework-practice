@@ -28,43 +28,15 @@ Add a product into cart and Verify
   ${cart_product_title}  Get Text    xpath=//*[@id="item_4_title_link"]/div
   Should Be Equal    ${homepage_porduct_title}    ${cart_product_title}
 
-Checkout
-  [Documentation]  Checkout step by step
-  [Arguments]  ${first_name}  ${last_name}  ${postal_code}
-  Click Element    xpath=//*[@id="checkout"]
-  Wait Until Element Is Visible    xpath=//*[@id="first-name"]
-  Input Text    xpath=//*[@id="first-name"]    ${first_name}
-  Input Text    xpath=//*[@id="last-name"]    ${last_name}
-  Input Text    xpath=//*[@id="postal-code"]    ${postal_code}
-  Submit Form
-  Sleep    1
-
 Checkout complete and Verify
   [Documentation]  Checkout complete and Verify
   Wait Until Element Is Visible    xpath=//*[@id="item_4_title_link"]/div
   Element Text Should Be    xpath=//*[@id="item_4_title_link"]/div    Sauce Labs Backpack
-  ${product_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[1]/div[3]/div[2]/div[2]/div
-  ${product_price}  Set Variable  ${product_price.split("$")}
-  ${product_price}  Set Variable  ${product_price[-1]}
-  ${product_price}  Convert To Number    ${product_price}
-
-  ${item_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[6]
-  ${item_price}  Set Variable  ${item_price.split("$")}
-  ${item_price}  Set Variable  ${item_price[-1]}
-  ${item_price}  Convert To Number    ${item_price}
-
-  ${tax_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[7]
-  ${tax_price}  Set Variable  ${tax_price.split("$")}
-  ${tax_price}  Set Variable  ${tax_price[-1]}
-  ${tax_price}  Convert To Number    ${tax_price}
-
-  ${total_price}  Get Text    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[8]
-  ${total_price}  Set Variable  ${total_price.split("$")}
-  ${total_price}  Set Variable  ${total_price[-1]}
-  ${total_price}  Convert To Number    ${total_price}
-
+  ${product_price}  Get price and Convert to number    xpath=//*[@id="checkout_summary_container"]/div/div[1]/div[3]/div[2]/div[2]/div
+  ${item_price}  Get price and Convert to number    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[6]
+  ${tax_price}  Get price and Convert to number    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[7]
+  ${total_price}  Get price and Convert to number    xpath=//*[@id="checkout_summary_container"]/div/div[2]/div[8]
   ${checkout_price}  Evaluate    ${item_price}+${tax_price}
-
   Click Element    xpath=//*[@id="finish"]
   Element Text Should Be    xpath=//*[@id="checkout_complete_container"]/h2    Thank you for your order!
   Should Be Equal    ${product_price}    ${item_price}

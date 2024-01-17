@@ -1,6 +1,7 @@
 *** Settings ***
 Library  Selenium2Library
 Library    String
+Resource  keywords/keywords.robot
 Documentation  Invaild checkout without input information
 Suite Setup  Open Browser  https://www.saucedemo.com/  chrome
 Suite Teardown  Close Browser
@@ -14,15 +15,6 @@ Invaild checkout without input information
   Add product into cart and checkout  ${username}  ${password}  
   
 *** Keywords ***
-Login
-  [Documentation]  Login
-  [Arguments]  ${username}  ${password}
-  Wait Until Element Is Visible    xpath=//*[@id="user-name"]
-  Input Text    xpath=//*[@id="user-name"]    ${username}
-  Input Text    xpath=//*[@id="password"]    ${password}
-  Submit Form
-  Sleep    2
-
 Add a product into cart and Verify
   [Documentation]  Add a product into cart and Verify by cart's quantity and product's title
   Wait Until Element Is Visible    xpath=//*[@id="add-to-cart-sauce-labs-backpack"]
