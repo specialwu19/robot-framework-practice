@@ -11,6 +11,17 @@ Login
   Submit form
   Sleep  2
 
+Add a product into cart and Verify
+  [Documentation]  Add a product into cart and Verify by cart's quantity and product's title
+  [Arguments]  ${add_to_cart_xpath}  ${homepage_porduct_title_xpath}  ${except_cart_quantity}  ${cart_product_title_xpath}
+  Wait Until Element Is Visible    xpath=${add_to_cart_xpath}
+  Click Element    xpath=${add_to_cart_xpath}
+  ${homepage_porduct_title}  Get Text    xpath=${homepage_porduct_title_xpath}
+  ${cart_quantity}  Element Text Should Be    xpath=//*[@id="shopping_cart_container"]/a/span    ${except_cart_quantity}
+  Click Element    xpath=//*[@id="shopping_cart_container"]
+  ${cart_product_title}  Get Text    xpath=${cart_product_title_xpath}
+  Should Be Equal    ${homepage_porduct_title}    ${cart_product_title}
+  
 Checkout
   [Documentation]  Checkout step by step
   [Arguments]  ${first_name}  ${last_name}  ${postal_code}
