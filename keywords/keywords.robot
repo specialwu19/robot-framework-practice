@@ -11,6 +11,12 @@ Login
   Submit form
   Sleep  2
 
+Scrolling page
+  [Documentation]  Scrolling home page
+  [Arguments]  ${x_coordinate}  ${y_coordinate}
+  Execute JavaScript    window.scrollTo(${x_coordinate}, ${y_coordinate});
+  Sleep    0.5
+
 Add a product into cart and Verify
   [Documentation]  Add a product into cart and Verify by cart's quantity and product's title
   [Arguments]  ${add_to_cart_xpath}  ${homepage_porduct_title_xpath}  ${except_cart_quantity}  ${cart_product_title_xpath}

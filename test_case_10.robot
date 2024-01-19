@@ -14,12 +14,6 @@ Vaild browse products
   Browse product  ${username}  ${password}
 
 *** Keywords ***
-Scrolling page
-  [Documentation]  Scrolling home page
-  [Arguments]  ${x_coordinate}  ${y_coordinate}
-  Execute JavaScript    window.scrollTo(${x_coordinate}, ${y_coordinate});
-  Sleep    0.5
-
 Go into product's own page and Product Verify
   [Documentation]  Go into product's own page by click title and check the prdouct titles are equal
   Wait Until Element Is Visible    xpath=//*[@id="item_4_title_link"]

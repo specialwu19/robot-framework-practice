@@ -15,12 +15,6 @@ Vaild browse products
   Browse product  ${username}  ${password}
 
 *** Keywords ***
-Scrolling page
-  [Documentation]  Scrolling home page
-  [Arguments]  ${x_coordinate}  ${y_coordinate}
-  Execute JavaScript    window.scrollTo(${x_coordinate}, ${y_coordinate});
-  Sleep    0.5
-
 Home page with default arragement of name(A to Z) change to Z to A and Verify
   [Documentation]  SEE home page with default arragement of name(A to Z) change to Z to A and Verify
   Wait Until Element Is Visible    xpath=//*[@id="header_container"]/div[2]/div/span/select

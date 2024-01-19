@@ -14,7 +14,7 @@ Vaild add two products into cart and remove
   Add products into cart and remove  ${username}  ${password}
   
 *** Keywords ***
-Add a product into cart and Verify
+Add two products into cart and Verify
   [Documentation]  Add a product into cart and Verify by cart's quantity and product's title
   Wait Until Element Is Visible    xpath=//*[@id="add-to-cart-sauce-labs-backpack"]
   Click Element    xpath=//*[@id="add-to-cart-sauce-labs-backpack"]
@@ -39,5 +39,5 @@ Add products into cart and remove
   [Documentation]  Add products into cart and remove
   [Arguments]  ${username}  ${password}
   Login    ${username}    ${password}
-  Add a product into cart and Verify
+  Add two products into cart and Verify
   Remove prdouct from cart and Verify
