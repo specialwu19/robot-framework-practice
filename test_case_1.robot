@@ -35,8 +35,8 @@ Logout Verify
   
 Login and Logout
   [Documentation]  Login and Logout Success then Verify
-  [Arguments]  ${user}  ${pass}
-  Login  ${user}  ${pass}
+  [Arguments]  ${username}  ${password}
+  Login  ${username}  ${password}
   Login Verify
   Logout
   Logout Verify

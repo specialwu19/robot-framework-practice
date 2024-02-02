@@ -21,6 +21,6 @@ Login Verify
 
 Login and Verify
   [Documentation]  Login Fail and Verify
-  [Arguments]  ${user}  ${pass}
-  Login    ${user}    ${pass}
+  [Arguments]  ${username}  ${password}
+  Login    ${username}    ${password}
   Login Verify
